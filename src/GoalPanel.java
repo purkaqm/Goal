@@ -71,7 +71,7 @@ public class GoalPanel extends MyFrame {
 
     private void addButtons() {
         calculate = addButton("Calculate");
-        calculate.setLocation(COLUMN_2, STRING_6);
+        calculate.setLocation(0, STRING_LAST);
         add(calculate);
     }
 

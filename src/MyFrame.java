@@ -11,6 +11,7 @@ public class MyFrame extends JFrame {
     final int STRING_5 = b - 400;
     final int STRING_6 = b - 350;
     final int STRING_7 = b - 300;
+    final int STRING_LAST = b - 140;
 
     final int COLUMN_1 = a - 400;
     final int COLUMN_2 = a - 270;
@@ -29,6 +30,12 @@ public class MyFrame extends JFrame {
         return new Dimension(width, height);
     }
 
+    protected Dimension getButtonSize() {
+        int width = a;
+        int height = STRING_3;
+        return new Dimension(width, height);
+    }
+
     protected JTextField addTextField() {
         JTextField textField = new JTextField();
         textField.setSize(getElementSize());
@@ -44,7 +51,7 @@ public class MyFrame extends JFrame {
 
     protected JButton addButton(String name) {
         JButton button = new JButton(name);
-        button.setSize(getElementSize());
+        button.setSize(getButtonSize());
         return button;
     }
 }
