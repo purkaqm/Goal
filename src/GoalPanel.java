@@ -4,20 +4,14 @@ import java.awt.event.ActionListener;
 
 public class GoalPanel extends MyFrame {
 
-    JButton calculate;
+    JButton calculate, testHTML;
     JTextField actualCosts, estimatedCosts, rate;
     JTextField actualCostsRes, estimatedCostsRes, rateRes;
     JLabel actualCostsLabel, estimatedCostLabel, rateValueLabel;
 
     GoalPanel(String name) {
-        this.name = name;
-        setName(this.name);
-        setTitle(this.name);
-        setSize(a, b);
-        setLocation(a, b);
-        setResizable(false);
-        setLayout(null);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        super(name);
+
 
         addTextFields();
         addLabels();
@@ -52,6 +46,13 @@ public class GoalPanel extends MyFrame {
         estimatedCostsRes = addTextField();
         estimatedCostsRes.setLocation(COLUMN_3, STRING_3);
         add(estimatedCostsRes);
+
+        testHTML = addButton("<html><H1><a href='yanex.ru'> data </a></H1></html>");
+        testHTML.setLocation(COLUMN_1, STRING_6);
+        testHTML.setSize(200,200);
+        add(testHTML);
+
+
     }
 
     private void addLabels() {

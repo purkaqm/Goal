@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MyFrame extends JFrame {
+
     String name;
     final int a = 420, b = 600;
     final int STRING_1 = b - 600;
@@ -17,6 +18,17 @@ public class MyFrame extends JFrame {
     final int COLUMN_2 = a - 270;
     final int COLUMN_3 = a - 133;
     final int COLUMN_4 = a - 0;
+
+    MyFrame(String name) {
+        this.name = name;
+        setName(this.name);
+        setTitle(this.name);
+        setSize(a, b);
+        setLocation(a, b);
+        setResizable(false);
+        setLayout(null);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
 
     protected Dimension getElementSize() {
         int width = 120;
