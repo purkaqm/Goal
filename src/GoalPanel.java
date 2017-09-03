@@ -1,13 +1,15 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GoalPanel extends MyFrame {
 
-    JButton calculate, testHTML;
-    JTextField actualCosts, estimatedCosts, rate;
+    JButton calculate;
+    JTextField salaryUsd, baselineUsd, rateUsd, goalUsd, salaryRub, baselineRub, rateRub, goalRub, months;
     JTextField actualCostsRes, estimatedCostsRes, rateRes;
-    JLabel actualCostsLabel, estimatedCostLabel, rateValueLabel;
+    JLabel salaryLabel, baselineLabel, rateLabel, goalLabel, usd, rub, monthsLabel;
+
 
     GoalPanel(String name) {
         super(name);
@@ -22,52 +24,91 @@ public class GoalPanel extends MyFrame {
     }
 
     private void addTextFields() {
-        rate = addTextField();
-        rate.setLocation(COLUMN_1, STRING_1);
-        add(rate);
+        rateUsd = addTextField();
+        rateUsd.setLocation(COLUMN_2, STRING_2);
+        rateUsd.setEditable(false);
+        rateUsd.setBackground(Color.CYAN);
+        rateUsd.setText("1");
+        add(rateUsd);
 
-        actualCosts = addTextField();
-        actualCosts.setLocation(COLUMN_1, STRING_2);
-        add(actualCosts);
+        salaryUsd = addTextField();
+        salaryUsd.setLocation(COLUMN_2, STRING_3);
+        salaryUsd.setBackground(Color.cyan);
+        salaryUsd.setEditable(false);
+        salaryUsd.setText("2500");
+        add(salaryUsd);
 
-        estimatedCosts = addTextField();
-        estimatedCosts.setLocation(COLUMN_1, STRING_3);
-        add(estimatedCosts);
+        baselineUsd = addTextField();
+        baselineUsd.setLocation(COLUMN_2, STRING_4);
+        add(baselineUsd);
 
-        rateRes = addTextField();
-        rateRes.setLocation(COLUMN_3, STRING_1);
-        rateRes.setSize(getElementSize1());
-        add(rateRes);
+        goalUsd = addTextField();
+        goalUsd.setLocation(COLUMN_2, STRING_5);
+        goalUsd.setEditable(false);
+        goalUsd.setBackground(Color.cyan);
+        add(goalUsd);
 
-        actualCostsRes = addTextField();
-        actualCostsRes.setLocation(COLUMN_3, STRING_2);
-        add(actualCostsRes);
+        months = addTextField();
+        months.setLocation(COLUMN_2, STRING_6);
+        months.setEditable(false);
+        months.setBackground(Color.cyan);
+        add(months);
 
-        estimatedCostsRes = addTextField();
-        estimatedCostsRes.setLocation(COLUMN_3, STRING_3);
-        add(estimatedCostsRes);
+        // #################################
 
-        testHTML = addButton("<html><H1><a href='yanex.ru'> data </a></H1></html>");
-        testHTML.setLocation(COLUMN_1, STRING_6);
-        testHTML.setSize(200,200);
-        add(testHTML);
+        rateRub = addTextField();
+        rateRub.setLocation(COLUMN_3, STRING_2);
+        add(rateRub);
 
+        salaryRub = addTextField();
+        salaryRub.setLocation(COLUMN_3, STRING_3);
+        salaryRub.setBackground(Color.cyan);
+        salaryRub.setEditable(false);
+        salaryRub.setText(salaryUsd.getText());
+        add(salaryRub);
+
+        baselineRub = addTextField();
+        baselineRub.setLocation(COLUMN_3, STRING_4);
+        baselineRub.setEditable(false);
+        baselineRub.setBackground(Color.cyan);
+
+        add(baselineRub);
+
+        goalRub = addTextField();
+        goalRub.setLocation(COLUMN_3, STRING_5);
+        add(goalRub);
 
     }
 
     private void addLabels() {
-        rateValueLabel = addLabel("RUB for USD ===>");
-        rateValueLabel.setLocation(COLUMN_2, STRING_1);
-        add(rateValueLabel);
+        rateLabel = addLabel("Rate: ");
+        rateLabel.setLocation(COLUMN_1, STRING_2);
+        add(rateLabel);
 
 
-        actualCostsLabel = addLabel("Actual Costs ===>");
-        actualCostsLabel.setLocation(COLUMN_2, STRING_2);
-        add(actualCostsLabel);
+        salaryLabel = addLabel("Salary: ");
+        salaryLabel.setLocation(COLUMN_1, STRING_3);
+        add(salaryLabel);
 
-        estimatedCostLabel = addLabel("Estim Costs ===>");
-        estimatedCostLabel.setLocation(COLUMN_2, STRING_3);
-        add(estimatedCostLabel);
+        baselineLabel = addLabel("Baseline");
+        baselineLabel.setLocation(COLUMN_1, STRING_4);
+        add(baselineLabel);
+
+        goalLabel = addLabel("Goal");
+        goalLabel.setLocation(COLUMN_1, STRING_5);
+        add(goalLabel);
+
+        usd = addLabel("    USD");
+        usd.setLocation(COLUMN_2, STRING_1);
+        add(usd);
+
+        rub = addLabel("    RUB");
+        rub.setLocation(COLUMN_3, STRING_1);
+        add(rub);
+
+        monthsLabel = addLabel("Months left");
+        monthsLabel.setLocation(COLUMN_1, STRING_6);
+        add(monthsLabel);
     }
 
     private void addButtons() {
@@ -77,24 +118,54 @@ public class GoalPanel extends MyFrame {
     }
 
     private void addListeners() {
-        rate.addActionListener(new ActionListener() {
+
+
+        calculate.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                rateRes.setText(rate.getText());
-            }
-        });
-        estimatedCosts.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                estimatedCostsRes.setText(estimatedCosts.getText());
+                salaryRub.setText(convert(salaryUsd.getText()));
+                baselineRub.setText(convert(baselineUsd.getText()));
+                goalUsd.setText(convertBack(goalRub.getText()));
+                months.setText(convertMonths());
 
             }
         });
-        actualCosts.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                actualCostsRes.setText(actualCosts.getText());
-            }
-        });
     }
+
+    private String convert(String value) {
+        String number = "";
+
+        int rate = Integer.parseInt(rateRub.getText());
+
+        number = Integer.toString(rate * Integer.parseInt(value));
+
+
+        return number;
+    }
+
+    private String convertBack(String value) {
+        String number = "";
+
+        int rate = Integer.parseInt(rateRub.getText());
+
+        number = Integer.toString(Integer.parseInt(value) / rate);
+
+
+        return number;
+    }
+
+    private String convertMonths() {
+        String number = "";
+
+        int goalUSD = Integer.parseInt(goalUsd.getText());
+
+        int salary = Integer.parseInt(salaryUsd.getText());
+
+        number = Integer.toString(goalUSD / salary);
+
+
+        return number;
+    }
+
+
 }
