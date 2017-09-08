@@ -52,6 +52,7 @@ public class MyFrame extends JFrame {
         JTextField textField = new JTextField();
         textField.setSize(getElementSize());
         textField.setBackground(Color.orange);
+        textField.setText("0");
         return textField;
     }
 

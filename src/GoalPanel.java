@@ -64,7 +64,7 @@ public class GoalPanel extends MyFrame {
         salaryRub.setLocation(COLUMN_3, STRING_3);
         salaryRub.setBackground(Color.cyan);
         salaryRub.setEditable(false);
-        salaryRub.setText(salaryUsd.getText());
+        salaryRub.setText(convert(salaryUsd.getText()));
         add(salaryRub);
 
         baselineRub = addTextField();
@@ -161,7 +161,9 @@ public class GoalPanel extends MyFrame {
 
         int salary = Integer.parseInt(salaryUsd.getText());
 
-        number = Integer.toString(goalUSD / salary);
+        int baseline = Integer.parseInt(baselineUsd.getText());
+
+        number = Integer.toString((goalUSD - baseline) / salary);
 
 
         return number;
