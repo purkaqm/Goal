@@ -58,6 +58,7 @@ public class GoalPanel extends MyFrame {
 
         rateRub = addTextField();
         rateRub.setLocation(COLUMN_3, STRING_2);
+        rateRub.setText("60");
         add(rateRub);
 
         salaryRub = addTextField();
