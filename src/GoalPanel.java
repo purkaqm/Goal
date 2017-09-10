@@ -144,11 +144,13 @@ public class GoalPanel extends MyFrame {
     }
 
     private String convertBack(String value) {
-        String number = "";
+        String number = "0";
 
         int rate = Integer.parseInt(rateRub.getText());
 
-        number = Integer.toString(Integer.parseInt(value) / rate);
+        if (rate != 0)
+
+            number = Integer.toString(Integer.parseInt(value) / rate);
 
 
         return number;
