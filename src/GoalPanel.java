@@ -134,41 +134,39 @@ public class GoalPanel extends MyFrame {
     }
 
     private String convert(String value) {
-        String number = "";
-
-        int rate = Integer.parseInt(rateRub.getText());
-
-        number = Integer.toString(rate * Integer.parseInt(value));
-
+        String number = "0";
+        try {
+            int rate = Integer.parseInt(rateRub.getText());
+            number = Integer.toString(rate * Integer.parseInt(value));
+        } catch (NumberFormatException e) {
+            return "0";
+        }
 
         return number;
     }
 
     private String convertBack(String value) {
         String number = "0";
-
-        int rate = Integer.parseInt(rateRub.getText());
-
-        if (rate != 0)
-
-            number = Integer.toString(Integer.parseInt(value) / rate);
-
-
+        try {
+            int rate = Integer.parseInt(rateRub.getText());
+            if (rate != 0)
+                number = Integer.toString(Integer.parseInt(value) / rate);
+        } catch (NumberFormatException e) {
+            return number;
+        }
         return number;
     }
 
     private String convertMonths() {
-        String number = "";
-
-        int goalUSD = Integer.parseInt(goalUsd.getText());
-
-        int salary = Integer.parseInt(salaryUsd.getText());
-
-        int baseline = Integer.parseInt(baselineUsd.getText());
-
-        number = Integer.toString((goalUSD - baseline) / salary);
-
-
+        String number = "0";
+        try {
+            int goalUSD = Integer.parseInt(goalUsd.getText());
+            int salary = Integer.parseInt(salaryUsd.getText());
+            int baseline = Integer.parseInt(baselineUsd.getText());
+            number = Integer.toString((goalUSD - baseline) / salary);
+        } catch (NumberFormatException e) {
+            return number;
+        }
         return number;
     }
 
