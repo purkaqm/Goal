@@ -33,9 +33,9 @@ public class GoalPanel extends MyFrame {
 
         salaryUsd = addTextField();
         salaryUsd.setLocation(COLUMN_2, STRING_3);
-        salaryUsd.setBackground(Color.cyan);
-        salaryUsd.setEditable(false);
-        salaryUsd.setText("2500");
+        //salaryUsd.setBackground(Color.cyan);
+        // salaryUsd.setEditable(false);
+        salaryUsd.setText("0");
         add(salaryUsd);
 
         baselineUsd = addTextField();
@@ -163,7 +163,11 @@ public class GoalPanel extends MyFrame {
             int goalUSD = Integer.parseInt(goalUsd.getText());
             int salary = Integer.parseInt(salaryUsd.getText());
             int baseline = Integer.parseInt(baselineUsd.getText());
-            number = Integer.toString((goalUSD - baseline) / salary);
+            try {
+                number = Integer.toString((goalUSD - baseline) / salary);
+            } catch (ArithmeticException e) {
+                return number;
+            }
         } catch (NumberFormatException e) {
             return number;
         }
