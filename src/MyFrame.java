@@ -24,7 +24,7 @@ public class MyFrame extends JFrame {
         setName(this.name);
         setTitle(this.name);
         setSize(a, b);
-        setLocation(a, b);
+        setLocation(a+100, b-400);
         setResizable(false);
         setLayout(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
