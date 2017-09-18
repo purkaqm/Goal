@@ -6,6 +6,7 @@ import java.lang.reflect.*;
 @Retention(RetentionPolicy.RUNTIME)
 @interface MyAnno {
     String str();
+
     int val();
 }
 
@@ -13,7 +14,7 @@ import java.lang.reflect.*;
 class Meta {
 
     @MyAnno(str = "Test01", val = 100)
-    static void myMeth() {
+    public static void myMeth() {
         Meta ob = new Meta();
 
         try {
@@ -26,7 +27,7 @@ class Meta {
             System.out.println(anno.str() + " " + anno.val());
 
         } catch (NoSuchMethodException e) {
-            System.out.println("Method is not found");
+            System.out.println(e);
         }
 
     }
